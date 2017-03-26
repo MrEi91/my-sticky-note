@@ -32,9 +32,7 @@ methods.createSticky = (req, res, next) => {
     slug: slug(req.body.title).toLowerCase()
   })
     .then((sticky) => {
-      res.send({
-        sticky: sticky
-      })
+      res.send(sticky)
     })
     .catch((error) => {
       res.send(error)
