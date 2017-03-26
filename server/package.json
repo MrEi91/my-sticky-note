@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "0.1.0",
+  "description": "Sticky Notes",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"nodemon app.js"
+  },
+  "keywords": [
+    "Sticky",
+    "Notes"
+  ],
+  "author": "Eri Irawan",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "live-server": "^1.2.0",
+    "mongodb": "^2.2.25",
+    "mongoose": "^4.9.1",
+    "morgan": "^1.8.1",
+    "nodemon": "^1.11.0",
+    "slug": "^0.9.1"
+  }
+}
