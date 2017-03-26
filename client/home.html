@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+    <title>Sticky Notes</title>
+
+    <!-- CSS  -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection" />
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  </head>
+
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo"><img src="http://www.hrinside.com.au/wp-content/uploads/2009/11/ei-logo-redball.png" alt=""></a>
+      </div>
+    </nav>
+
+    <div class="section no-pad-bot">
+      <div class="container">
+        <h3 class="header center orange-text">Sticky Notes</h3>
+        <div class="row">
+
+        </div>
+        <ul id="sticky">
+
+        </ul>
+      </div>
+    </div>
+
+    <div class="fixed-action-btn vertical click-to-toggle">
+      <a class="btn-floating btn-large red">
+        <i class="material-icons">menu</i>
+      </a>
+      <ul>
+        <li><a id="logout" class="btn-floating red tooltipped" data-position="left" data-delay="50" data-tooltip="Logout"><i class="material-icons">power_settings_new</i></a></li>
+        <!-- <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a></li> -->
+        <li><a href="#add" class="btn-floating green tooltipped" data-position="left" data-delay="50" data-tooltip="Add Sticky"><i class="material-icons">add</i></a></li>
+        <!-- <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li> -->
+      </ul>
+    </div>
+
+    <!-- ADD STICKY NOTES -->
+    <div id="add" class="modal modal-fixed-footer">
+      <div class="modal-content col s6">
+        <h4>Add Sticky</h4>
+        <br>
+        <form action="#">
+          <div class="input-field">
+            <i class="material-icons prefix">assignment</i>
+            <input id="title" type="text" class="validate">
+            <label for="title">Title</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">note_add</i>
+            <input id="content" type="text" class="validate">
+            <label for="content">Content</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="addSticky()">Submit</a>
+        <a href="#" class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+      </div>
+    </div>
+    <!-- END STICKY NOTES -->
+
+    <!-- START EDIT STICKY NOTES-->
+    <div id="modalEdit" class="modal modal-fixed-footer">
+      <div class="modal-content col s6">
+        <h4>Edit or Delete Sticky</h4>
+        <br>
+        <form action="#">
+          <div class="input-field">
+            <i class="material-icons prefix">assignment</i>
+            <input placeholder="title" id="editTitle" type="text" class="validate">
+            <label for="editTitle">Title</label>
+          </div>
+          <div class="input-field">
+            <i class="material-icons prefix">note_add</i>
+            <input placeholder="content" id="editContent" type="text" class="validate">
+            <label for="editContent">Content</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a id="btn-edit" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="editSticky()">Submit</a>
+        <a id="btn-delete" class="modal-action modal-close waves-effect waves-green btn-flat" onclick="remove()">Delete</a>
+        <a class="modal-action modal-close waves-effect waves-green btn-flat ">Cancel</a>
+      </div>
+    </div>
+    <!-- END STICKY NOTES -->
+
+    <!--  Scripts-->
+    <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/script.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+      });
+    </script>
+
+  </body>
+
+</html>
