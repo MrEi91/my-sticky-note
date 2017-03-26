@@ -9,6 +9,7 @@ const app = express()
 app.use(cors())
 
 let index = require('./routes/index')
+let sticky = require('./routes/sticky')
 
 app.use(morgan('dev'))
 app.use(bodyParser.json())
@@ -17,5 +18,6 @@ app.use(bodyParser.urlencoded({
 }))
 
 app.use('/api', index)
+app.use('/api', sticky)
 
 app.listen(3000)
