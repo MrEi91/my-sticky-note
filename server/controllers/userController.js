@@ -53,13 +53,12 @@ methods.Register = (req, res, next) => {
 
 methods.Login = (req, res, next) => {
   User.findOne({
-    username: req.body.username,
     email: req.body.email
   })
     .then((user) => {
       if (!user) {
         res.send({
-          userUndefined: 'User not found!'
+          userUndefined: true
         })
       } else {
         const hash = crypto.createHmac('sha256', secret).update(req.body.password, user.salt).digest('hex')
@@ -74,7 +73,7 @@ methods.Login = (req, res, next) => {
           })
         } else {
           res.send({
-            message: 'Password is wrong!'
+            wrongPassword: true
           })
         }
       }
