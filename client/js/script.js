@@ -1,11 +1,11 @@
-$(document).ready(function() {
+$(document).ready(function () {
   let token = localStorage.getItem('token')
   if (!token) {
     window.location.href = 'http://127.0.0.1:8080/index.html'
   } else {
     $.ajax({
       url: `http://localhost:3000/api/verify/${token}`,
-      success: function(user) {
+      success: function (user) {
         if (!user.email) {
           window.location.href = 'http://127.0.0:8080/api/index.html'
         }
@@ -15,17 +15,17 @@ $(document).ready(function() {
   }
 })
 
-$('#logout').click(function() {
+$('#logout').click(function () {
   localStorage.clear()
   window.location.href = 'http://127.0.0.1:8080/index.html'
 })
 
-function getStickys() {
+function getStickys () {
   $.ajax({
     url: 'http://localhost:3000/api/sticky',
     type: 'GET',
-    success: function(stickys) {
-      stickys.forEach(function(sticky) {
+    success: function (stickys) {
+      stickys.forEach(function (sticky) {
         $('#sticky').append(`
           <li id="${sticky.slug}">
             <a href="#modalEdit" onclick="getOneSticky('${sticky.slug}')">
@@ -35,29 +35,29 @@ function getStickys() {
           </li>`)
       })
     },
-    error: function(err) {
+    error: function (err) {
       console.log(err)
     }
   })
 }
 
-function getOneSticky(slug) {
+function getOneSticky (slug) {
   $.ajax({
     url: `http://localhost:3000/api/sticky/${slug}`,
     type: 'GET',
-    success: function(sticky) {
+    success: function (sticky) {
       $('#editTitle').val(sticky.title)
       $('#editContent').val(sticky.content)
       $('#btn-edit').attr('onclick', `editSticky('${slug}')`)
       $('#btn-delete').attr('onclick', `remove('${slug}')`)
     },
-    error: function(err) {
+    error: function (err) {
       console.log(err)
     }
   })
 }
 
-function addSticky() {
+function addSticky () {
   $.ajax({
     url: 'http://localhost:3000/api/sticky',
     type: 'POST',
@@ -65,7 +65,7 @@ function addSticky() {
       title: $('#title').val(),
       content: $('#content').val()
     },
-    success: function(sticky) {
+    success: function (sticky) {
       $('#sticky').append(`
         <li id="${sticky.slug}">
           <a href="#modalEdit" onclick="getOneSticky('${sticky.slug}')">
@@ -74,13 +74,13 @@ function addSticky() {
           </a>
         </li>`)
     },
-    error: function(err) {
+    error: function (err) {
       console.log(err)
     }
   })
 }
 
-function editSticky(slug) {
+function editSticky (slug) {
   $.ajax({
     url: `http://localhost:3000/api/sticky/${slug}`,
     type: 'PUT',
@@ -88,25 +88,25 @@ function editSticky(slug) {
       title: $('#editTitle').val(),
       content: $('#editContent').val()
     },
-    success: function(memo) {
+    success: function (memo) {
       $('#sticky').html('')
       getStickys()
     },
-    error: function(err) {
+    error: function (err) {
       console.log(err)
     }
   })
 }
 
-function remove(slug) {
+function remove (slug) {
   console.log(slug)
   $.ajax({
     url: `http://localhost:3000/api/sticky/${slug}`,
     type: 'DELETE',
-    success: function() {
+    success: function () {
       $(`#${slug}`).html('')
     },
-    error: function(err) {
+    error: function (err) {
       console.log(err)
     }
   })
